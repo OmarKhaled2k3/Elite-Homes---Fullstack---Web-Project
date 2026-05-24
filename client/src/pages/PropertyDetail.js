@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import TourModal from '../components/TourModal';
+import API_BASE_URL from '../config';
 
 const PLACEHOLDER = 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1200&q=80';
 
@@ -21,7 +22,7 @@ export default function PropertyDetail() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`/api/properties/${id}`)
+    fetch(`${API_BASE_URL}/properties/${id}`)
       .then(r => r.json())
       .then(d => {
         if (d.success) setProperty(d.data);

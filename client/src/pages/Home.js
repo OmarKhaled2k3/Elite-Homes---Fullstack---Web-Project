@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import API_BASE_URL from '../config';
 import PropertyCard from '../components/PropertyCard';
 
 /* ── Testimonials data ───────────────────────────────────── */
@@ -48,7 +49,7 @@ export default function Home() {
   const [searchErrors, setSearchErrors] = useState({});
 
   useEffect(() => {
-    fetch('/api/properties?limit=3')
+    fetch(`${API_BASE_URL}/properties?limit=3`)
       .then(r => r.json())
       .then(d => { if (d.success) setFeatured(d.data.slice(0, 3)); })
       .catch(() => {})

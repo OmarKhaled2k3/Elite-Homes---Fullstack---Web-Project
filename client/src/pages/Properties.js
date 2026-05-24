@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import PropertyCard from '../components/PropertyCard';
+import API_BASE_URL from '../config';
 
 const PRICE_RANGES = [
   { label: 'Any Price',    min: '',       max: '' },
@@ -42,7 +43,7 @@ export default function Properties() {
       if (pr.min) params.set('minPrice', pr.min);
       if (pr.max) params.set('maxPrice', pr.max);
 
-      const res  = await fetch(`/api/properties?${params.toString()}`);
+      const res  = await fetch(`${API_BASE_URL}/properties?${params.toString()}`);
       const data = await res.json();
       if (data.success) setProperties(data.data);
     } catch {
@@ -104,7 +105,7 @@ export default function Properties() {
 
             {/* ── Filter sidebar ─────────────────────────────── */}
             <div className="col-lg-3">
-              <div className="card border-0 shadow-sm rounded-4 p-4 sticky-top" style={{ top: 100 }}>
+              <div className="card border-0 shadow-sm rounded-4 p-4 sticky-top" >
                 <h5 className="fw-bold mb-4">
                   <i className="fa-solid fa-sliders me-2 text-purple" style={{ color: 'var(--main-color)' }}></i>
                   Filter Properties

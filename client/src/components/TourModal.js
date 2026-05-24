@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useToast } from '../context/ToastContext';
+import API_BASE_URL from '../config';
 
 const INIT = { name: '', email: '', phone: '', preferredDate: '', message: '' };
 
@@ -38,7 +39,7 @@ export default function TourModal({ property, onClose }) {
 
     setLoading(true);
     try {
-      const res = await fetch('/api/tours', {
+      const res = await fetch(`${API_BASE_URL}/tours`, {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify({

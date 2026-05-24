@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useToast } from '../context/ToastContext';
+import API_BASE_URL from '../config';
 
 const INIT = {
   firstName: '', lastName: '', email: '', phone: '',
@@ -65,7 +66,7 @@ export default function Contact() {
 
     setLoading(true);
     try {
-      const res  = await fetch('/api/contacts', {
+      const res  = await fetch(`${API_BASE_URL}/contacts`, {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify(form),
